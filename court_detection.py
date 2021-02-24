@@ -16,14 +16,14 @@ while(1):
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
     # HARD CODED COURT COLOR :(
-    court_color = np.uint8([[[153, 204, 255]]])
+    court_color = np.uint8([[[188, 218, 236]]])
 
     hsv_court_color = cv2.cvtColor(court_color, cv2.COLOR_BGR2HSV)
     hue = hsv_court_color[0][0][0]
 
     # define range of blue color in HSV - Again HARD CODED! :(
-    lower_color = np.array([hue - 10, 10, 10])
-    upper_color = np.array([hue + 10, 200, 200])
+    lower_color = np.array([hue - 50, 10, 10])
+    upper_color = np.array([hue + 50, 225, 225])
 
     # Threshold the HSV image to get only blue colors
     mask = cv2.inRange(hsv, lower_color, upper_color)
