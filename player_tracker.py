@@ -31,6 +31,8 @@ args = EasyDict({
     'weights': "yolov3.weights",
     'config': "yolov3.cfg",
 
+    'COLORS': np.random.uniform(0, 255, size=(1, 3))
+
 })
 
 def createTrackerByName(trackerType):
@@ -72,7 +74,7 @@ def draw_prediction(img, class_id, x, y, x_plus_w, y_plus_h):
     if class_id == 0:
         label = str(args.classes[class_id])
 
-        color = COLORS[class_id]
+        color = args.COLORS[class_id]
 
         cv2.rectangle(img, (x, y), (x_plus_w, y_plus_h), color, 2)
 
@@ -106,7 +108,6 @@ if __name__ == "__main__":
     # initialize the FPS throughput estimator
     fps = None
 
-    COLORS = np.random.uniform(0, 255, size=(len(args.classes), 3))
     # Set up Neural Net
     net = cv2.dnn.readNet(args.weights, args.config)
 
